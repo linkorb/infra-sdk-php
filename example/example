@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Infra\Sdk\Utils;
+
+$args = Utils::getArguments(__FILE__);
+
+// Create the GraphQL query
+$query = <<<GRAPHQL
+query {
+    allHosts {
+        name
+    }
+}
+GRAPHQL;
+
+$data = Utils::query($query);
+
+foreach ($data['data']['allHosts']  as $host) {
+    echo $host['name'] . PHP_EOL;
+}
