@@ -1,7 +1,7 @@
 {
     "name": "linkorb/infra-sdk",
     "description": "Infra SDK: Utils for your custom PHP-based infra scripts",
-    "homepage": "http://www.github.com/linkorb/infra-sdk",
+    "homepage": "http://www.github.com/linkorb/infra-sdk-php",
     "keywords": ["php", "firwall", "infra", "iptables", "linkorb"],
     "type": "library",
     "authors": [
