@@ -19,10 +19,12 @@
         "docopt/docopt": "^1.0"
     },
     "autoload": {
-        "files": ["vendor/docopt/docopt/src/docopt.php"],
         "psr-4": {
             "Infra\\Sdk\\": "src/"
         }
+    },
+    "autoload-dev": {
+        "files": ["vendor/docopt/docopt/src/docopt.php"]
     },
     "license": "MIT"
 }
