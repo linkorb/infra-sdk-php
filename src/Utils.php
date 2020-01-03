@@ -33,6 +33,9 @@ class Utils
         fclose($pipes[1]);
 
 	$return_value = proc_close($process);
+	if ($return_value!=0) {
+            throw new Exception\QueryException("`infra query` command exited with non-zero response: " . $return_value);
+        }
 
 	if (trim($json)=='') {
             throw new Exception\QueryException("Empty graphql query response");
