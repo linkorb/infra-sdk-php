@@ -17,7 +17,10 @@ class Utils
         ];
 
         // Execute the console command
-        $cmd = 'infra query';
+	$cmd = 'infra query';
+	if (getenv('INFRA_BIN')) {
+            $cmd = getenv('INFRA_BIN') . ' query';
+        }
         $process = proc_open($cmd, $descriptorspec, $pipes);
         if (!is_resource($process)) {
             echo "Error executing $cmd";
@@ -33,6 +36,9 @@ class Utils
         fclose($pipes[1]);
 
 	$return_value = proc_close($process);
+	if ($return_value==127) {
+            throw new Exception\QueryException("`infra query` command not found. Try specifying INFRA_BIN");
+        }
 	if ($return_value!=0) {
             throw new Exception\QueryException("`infra query` command exited with non-zero response: " . $return_value);
         }
