@@ -32,7 +32,11 @@ class Utils
         $json = trim(stream_get_contents($pipes[1]));
         fclose($pipes[1]);
 
-        $return_value = proc_close($process);
+	$return_value = proc_close($process);
+
+	if (trim($json)=='') {
+            throw new Exception\QueryException("Empty graphql query response");
+        }
 
         $data = json_decode($json, true);
         if (!$data) {
